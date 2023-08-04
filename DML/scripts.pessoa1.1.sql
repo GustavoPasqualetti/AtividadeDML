@@ -1,0 +1,44 @@
+CREATE DATABASE Pessoas
+
+USE Pessoas
+
+CREATE TABLE Pessoa
+(
+IdPessoa INT PRIMARY KEY IDENTITY,
+Nome VARCHAR(100) NOT NULL,
+CNH VARCHAR(11) NOT NULL
+)
+
+CREATE TABLE Email
+(
+IdEmail INT PRIMARY KEY IDENTITY,
+IdPessoa INT FOREIGN KEY REFERENCES Pessoa(IdPessoa),
+Endereço VARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Telefone
+(
+IdTelefone INT PRIMARY KEY IDENTITY,
+IdPessoa INT FOREIGN KEY REFERENCES Pessoa(IdPessoa),
+Numero VARCHAR(100) NOT NULL
+)
+
+INSERT INTO Pessoa(Nome, CNH) VALUES('Joao', '4712840139')
+
+INSERT INTO Email(IdPessoa, Endereço) VALUES(3,'joaozinho@gmail.com')
+
+INSERT INTO Telefone(IdPessoa, Numero) VALUES(3, '11941473446') 
+
+SELECT
+PESSOA.NOME,
+PESSOA.CNH,
+EMAIL.Endereço,
+TELEFONE.NUMERO
+FROM
+Pessoa,
+Email,
+Telefone
+WHERE
+Pessoa.IdPessoa = EMAIL.IdPessoa
+AND Pessoa.IdPessoa = Telefone.IdPessoa
+ORDER BY NOME DESC

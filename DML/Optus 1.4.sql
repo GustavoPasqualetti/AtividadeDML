@@ -1,0 +1,20 @@
+CREATE DATABASE Optus
+
+USE Optus
+
+CREATE TABLE Artistas
+(
+IdArtista INT PRIMARY KEY IDENTITY, 
+Nome VARCHAR(30)
+)
+
+CREATE TABLE Albuns
+(
+IdAlbum INT PRIMARY KEY IDENTITY,
+IdArtista INT FOREIGN KEY REFERENCES Artistas(IdArtista),
+Titulo VARCHAR(30),
+DataLancamento VARCHAR(30),
+Localizacao VARCHAR(30),
+Minutos VARCHAR (30),
+Ativo VARCHAR(30)
+)
